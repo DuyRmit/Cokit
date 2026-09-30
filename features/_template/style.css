@@ -1,0 +1,2 @@
+/* CSS riêng của feature — không ảnh hưởng feature khác vì chạy trong iframe */
+body{font-family:'DM Sans',sans-serif;padding:28px 32px;color:#111}

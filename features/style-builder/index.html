@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML style prompt builder — Learning Design | RMIT Vietnam</title>
+  <link rel="icon" type="image/png" href="../../assets/img/rmit-logo.png">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="page">
+
+  <header class="top">
+    <div class="brand">
+      <img class="brand-logo" src="../../assets/img/rmit-logo.png" alt="Learning Design logo">
+      <div class="brand-text">
+        <span class="brand-name">Learning Design</span>
+        <span class="brand-org">RMIT Vietnam</span>
+      </div>
+    </div>
+    <a class="guide-link" href="https://duyrmit.github.io/acticities/activities/html-guide-and-tips/" target="_blank" rel="noopener">Read the style guide</a>
+  </header>
+
+  <div class="intro">
+    <h1>HTML style prompt builder</h1>
+    <p>Pick the RMIT style rules you need and get a ready-made prompt for your AI chat. Scan your HTML file first if you want to see which rules it breaks.</p>
+  </div>
+
+  <!-- STEP 1 -->
+  <section class="step" aria-labelledby="h-scan">
+    <div class="step-head"><span class="num" aria-hidden="true">1</span><h2 id="h-scan">Scan your file</h2><span class="tag">Optional</span></div>
+    <p class="step-desc">We read the CSS in your file and tick the rules it breaks. The scan runs in this page, so your file is never uploaded anywhere.</p>
+    <div class="step-body">
+      <label class="drop" id="drop">
+        <input type="file" id="file" accept=".html,.htm,text/html">
+        <span>Drop your .html file here, or <span class="drop-link">choose a file</span></span>
+      </label>
+      <div class="file-bar" id="fileBar" hidden>
+        <span class="file-name" id="fileName"></span>
+        <button type="button" class="btn-text" id="clearScan">Clear scan</button>
+      </div>
+      <div class="scan-summary" id="scanSummary" role="status" hidden></div>
+    </div>
+  </section>
+
+  <!-- STEP 2 -->
+  <section class="step" aria-labelledby="h-rules">
+    <div class="step-head"><span class="num" aria-hidden="true">2</span><h2 id="h-rules">Pick the rules</h2></div>
+    <p class="step-desc">Tick the rules the AI should follow. Untick any that don't apply to your activity.</p>
+    <div class="step-body">
+      <div class="rules-toolbar">
+        <span class="sel-count" id="selCount" aria-live="polite"></span>
+        <button type="button" class="btn-secondary" id="toggleAll"></button>
+      </div>
+      <div id="rules"></div>
+    </div>
+  </section>
+
+  <!-- STEP 3 -->
+  <section class="step" aria-labelledby="h-mode">
+    <div class="step-head"><span class="num" aria-hidden="true">3</span><h2 id="h-mode">Choose what to change</h2></div>
+    <div class="step-body" style="margin-top:12px;">
+      <div class="modes" role="radiogroup" aria-labelledby="h-mode">
+        <label class="mode on" id="mode-whole">
+          <input type="radio" name="mode" value="whole" checked>
+          <span><span class="mode-title">Restyle the whole file</span><span class="mode-help">Best for a new activity or a full clean-up.</span></span>
+        </label>
+        <label class="mode" id="mode-comp">
+          <input type="radio" name="mode" value="component">
+          <span><span class="mode-title">Change one component</span><span class="mode-help">Best for fixing one box, card, button or section.</span></span>
+        </label>
+      </div>
+
+      <div class="field" id="compField" hidden>
+        <label for="what">What should change in this component?</label>
+        <textarea id="what" rows="2" placeholder="For example: the card background colour"></textarea>
+        <p class="hint">Not sure how to copy one component? See <a href="https://duyrmit.github.io/acticities/activities/html-guide-and-tips/#inspect" target="_blank" rel="noopener">Using Inspect</a> in the style guide.</p>
+      </div>
+
+      <div class="field">
+        <label for="notes">Anything else for the AI? <span style="font-weight:400;color:var(--text-sec);">(optional)</span></label>
+        <textarea id="notes" rows="3" placeholder="For example: keep the quiz layout as it is"></textarea>
+      </div>
+    </div>
+  </section>
+
+  <!-- STEP 4 -->
+  <section class="step" aria-labelledby="h-out">
+    <div class="step-head"><span class="num" aria-hidden="true">4</span><h2 id="h-out">Get your prompt</h2></div>
+    <div class="step-body" style="margin-top:14px;">
+      <button type="button" class="btn-primary" id="generate">Generate prompt</button>
+      <div class="error-msg" id="err" role="alert" hidden></div>
+
+      <div class="output" id="output" hidden>
+        <div class="output-bar">
+          <strong>Your prompt</strong>
+          <button type="button" class="btn-secondary" id="copyBtn">Copy prompt</button>
+        </div>
+        <div class="output-text" id="outText" tabindex="0"></div>
+      </div>
+      <p class="output-help" id="outHelp" hidden>Paste this into your AI chat, then paste your HTML underneath or attach the file. Check the result in a browser before you upload it to Canvas.</p>
+    </div>
+  </section>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IfraGen — Learning Design | RMIT Vietnam</title>
+  <link rel="icon" type="image/png" href="../../assets/img/rmit-logo.png">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="ifra-layout">
+
+<div class="ifra-tool">
+<div class="ck-card">
+  <div class="ck-card-header">
+    <div class="ck-brand">
+      <img class="ck-brand-logo" src="../../assets/img/rmit-logo.png" alt="Learning Design logo">
+      <div class="ck-brand-text">
+        <span class="ck-brand-name">Learning Design</span>
+        <span class="ck-brand-org">RMIT Vietnam</span>
+      </div>
+      <span class="ck-brand-tag">Canvas Tool</span>
+    </div>
+    <h2>IfraGen</h2>
+    <p>Iframe Code Generator for Canvas</p>
+  </div>
+
+  <div class="ck-card-body gap-16">
+    <div class="ck-step">
+      <div class="ck-step-label">
+        <div class="ck-step-num">1</div>
+        <label for="ifra-fileLink">Paste the File Link</label>
+      </div>
+      <input type="text" id="ifra-fileLink" class="ck-input"
+        placeholder="https://rmit.instructure.com/courses/.../files/...?preview=...">
+    </div>
+
+    <div class="ck-step">
+      <div class="ck-step-label">
+        <div class="ck-step-num">2</div>
+        <label for="ifra-height">Set the Height (px)</label>
+      </div>
+      <div class="height-row">
+        <input type="number" id="ifra-height" class="ck-input" value="2000" min="100" max="9999">
+        <span class="height-hint">Default: 2000px — adjust for PDF length</span>
+      </div>
+    </div>
+
+    <div class="ck-step">
+      <div class="ck-step-label">
+        <div class="ck-step-num">3</div>
+        <label>Accessibility Options</label>
+      </div>
+      <div class="ck-options">
+        <label class="ck-option" id="ifra-aria-label">
+          <input type="checkbox" id="ifra-aria-hidden" onchange="ifraToggleAriaStyle(this);ifraGenerate()">
+          <span class="ck-option-text">
+            <span class="ck-option-title">Add <code>aria-hidden="true"</code></span>
+            <span class="ck-option-desc">Hides iframe from screen readers — recommended for simulations &amp; decorative embeds</span>
+          </span>
+        </label>
+      </div>
+    </div>
+
+    <button class="ck-btn-primary" onclick="ifraGenerate()">⚙ Generate Iframe Code</button>
+    <div class="ck-error" id="ifra-error">⚠ Could not find Course ID or File ID. Please check the URL.</div>
+
+    <div class="ck-divider"></div>
+
+    <div class="ck-step">
+      <div class="ck-step-label">
+        <div class="ck-step-num">4</div>
+        <label>Copy Your Code</label>
+      </div>
+      <div class="ck-output-box">
+        <div class="ck-output-toolbar">
+          <span>iframe · html</span>
+          <button class="ck-btn-copy" id="ifra-copyBtn" onclick="ifraCopy()">📋 Copy</button>
+        </div>
+        <div class="ck-output-code empty" id="ifra-outputCode">Code will appear here after generating...</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ck-card-footer">IfraGen · A Learning Design tool · RMIT Vietnam</div>
+</div>
+</div><!-- /ifra-tool -->
+
+<!-- GUIDE -->
+<div class="ck-card gd-card">
+  <div class="ck-card-header">
+    <h2>How to use IfraGen</h2>
+    <p>Turn an HTML activity into a live embed on your Canvas page</p>
+  </div>
+
+  <div class="gd-body">
+    <div class="gd-prep">
+      <div class="gd-prep-title">Before you upload</div>
+      <ul>
+        <li><strong>One file only.</strong> Compress everything into a single <span class="gd-code">.html</span> file, with CSS and JavaScript written inside it. Activities that link to separate files won't run on Canvas.</li>
+        <li><strong>Name it clearly.</strong> Use <span class="gd-code">COURSE-CODE_MODULE-NUMBER_FILE-NAME</span>, for example <span class="gd-code">ABCD1234_03_reflection-tracker.html</span>.</li>
+        <li><strong>Keep HTML files together.</strong> Create a dedicated folder for them in Files so they are easy to find and manage.</li>
+      </ul>
+    </div>
+
+    <ol class="gd-steps">
+      <li class="gd-step">
+        <div class="gd-num">1</div>
+        <div class="gd-step-body">
+          <h3>Upload your file to Canvas Files</h3>
+          <p>In your course, open <strong>Files</strong> and go to your HTML folder (use <strong>+ Folder</strong> to create one). Click <strong>Upload</strong> and choose your HTML file.</p>
+          <figure class="gd-shot">
+            <img src="images/image-02.webp" alt="Canvas Files page with the Upload button outlined in red, next to the + Folder button">
+          </figure>
+        </div>
+      </li>
+
+      <li class="gd-step">
+        <div class="gd-num">2</div>
+        <div class="gd-step-body">
+          <h3>Copy the file link</h3>
+          <p>Click the file name to open its preview, then copy the full link from your browser's address bar. It must contain <span class="gd-code">?preview=</span> followed by a number.</p>
+          <figure class="gd-shot">
+            <img src="images/image-03.webp" alt="Browser address bar showing a Canvas file link ending in ?preview= and a number">
+          </figure>
+        </div>
+      </li>
+
+      <li class="gd-step">
+        <div class="gd-num">3</div>
+        <div class="gd-step-body">
+          <h3>Generate the code in IfraGen</h3>
+          <p>Paste the link into <strong>Paste the File Link</strong> and set the height so your whole activity is visible. Click <strong>Generate Iframe Code</strong>, then <strong>Copy</strong>.</p>
+          <div class="gd-note">Tick <strong>aria-hidden</strong> only if the activity is not accessible. It hides the embed from screen readers, so give those users another way to complete the task. If the activity is accessible, leave it unticked.</div>
+        </div>
+      </li>
+
+      <li class="gd-step">
+        <div class="gd-num">4</div>
+        <div class="gd-step-body">
+          <h3>Open your Canvas page in edit mode</h3>
+          <p>Go to the page where the activity should appear and click <strong>Edit</strong>.</p>
+          <figure class="gd-shot">
+            <img src="images/image-04.webp" alt="Canvas page toolbar with the Edit button highlighted">
+          </figure>
+        </div>
+      </li>
+
+      <li class="gd-step">
+        <div class="gd-num">5</div>
+        <div class="gd-step-body">
+          <h3>Click Embed in the editor toolbar</h3>
+          <p>Place your cursor exactly where you want the activity, then click the <strong>Embed</strong> icon in the toolbar.</p>
+          <figure class="gd-shot">
+            <img src="images/image-05.webp" alt="Canvas page editor toolbar with the Embed icon highlighted and its tooltip showing">
+          </figure>
+        </div>
+      </li>
+
+      <li class="gd-step">
+        <div class="gd-num">6</div>
+        <div class="gd-step-body">
+          <h3>Paste the code and submit</h3>
+          <p>Paste the code into <strong>Embed Code</strong> and click <strong>Submit</strong>. Save the page and your activity will appear on Canvas.</p>
+          <figure class="gd-shot">
+            <img src="images/image-06.webp" alt="Canvas Embed dialog with the iframe code pasted into the Embed Code box and a Submit button">
+          </figure>
+        </div>
+      </li>
+    </ol>
+  </div>
+</div>
+
+</div><!-- /ifra-layout -->
+
+<script src="script.js"></script>
+</body>
+</html>

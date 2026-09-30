@@ -1,0 +1,262 @@
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red:        #e60028;
+      --red-dark:   #b8001f;
+      --green:      #00875a;
+
+      --bg:         #ffffff;
+      --surface:    #ffffff;
+      --surface2:   #f7f8fa;
+      --border:     #e8e9ec;
+      --border-med: #d0d2d9;
+
+      --text:       #111111;
+      --text-sec:   #6b7280;
+      --text-mute:  #9ca3af;
+
+      --radius:     10px;
+      --radius-lg:  14px;
+
+      --sh-card: 0 1px 3px rgba(0,0,0,0.07), 0 4px 12px rgba(0,0,0,0.04);
+      --sh-lift: 0 4px 16px rgba(0,0,0,0.10), 0 1px 4px rgba(0,0,0,0.06);
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding: 28px 32px;
+    }
+
+    /* ── CARD ─────────────────────────────────── */
+    .ck-card {
+      width: 100%;
+      max-width: 510px;
+      background: var(--surface);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      box-shadow: var(--sh-card);
+    }
+    .ck-card-header {
+      padding: 18px 22px 14px;
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface2);
+    }
+    .ck-brand {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 14px; padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .ck-brand-logo { height: 30px; width: auto; display: block; flex-shrink: 0; }
+    .ck-brand-text { display: flex; flex-direction: column; line-height: 1.25; }
+    .ck-brand-name { font-size: 9.5pt; font-weight: 700; color: var(--text); letter-spacing: -0.2px; }
+    .ck-brand-org  { font-size: 7.5pt; font-weight: 500; color: var(--text-sec); }
+    .ck-brand-tag {
+      margin-left: auto;
+      font-size: 7pt; font-weight: 700;
+      letter-spacing: 1.2px; text-transform: uppercase;
+      color: var(--red);
+      background: rgba(230,0,40,0.07);
+      border: 1px solid rgba(230,0,40,0.14);
+      padding: 2px 9px; border-radius: 20px;
+    }
+    .ck-card-header h2 { color: var(--text); font-size: 15pt; font-weight: 700; letter-spacing: -0.3px; }
+    .ck-card-header p  { color: var(--text-sec); font-size: 9pt; margin-top: 3px; }
+    .ck-card-body { padding: 20px 22px 22px; }
+    .ck-card-footer {
+      padding: 9px 22px;
+      border-top: 1px solid var(--border);
+      background: var(--surface2);
+      border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+      font-size: 8pt; color: var(--text-mute);
+      text-align: center;
+    }
+
+    /* ── STEPS ────────────────────────────────── */
+    .ck-step { display: flex; flex-direction: column; gap: 7px; }
+    .ck-step-label { display: flex; align-items: center; gap: 8px; }
+    .ck-step-num {
+      width: 19px; height: 19px;
+      background: #111; color: #fff; border-radius: 50%;
+      font-size: 8pt; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .ck-step-label label { font-size: 10pt; font-weight: 600; color: var(--text); }
+
+    /* ── INPUT ────────────────────────────────── */
+    .ck-input {
+      width: 100%;
+      padding: 9px 12px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 10pt; color: var(--text);
+      background: var(--surface2);
+      outline: none;
+      transition: border-color 0.14s, box-shadow 0.14s;
+    }
+    .ck-input:focus {
+      border-color: var(--border-med);
+      box-shadow: 0 0 0 3px rgba(0,0,0,0.05);
+      background: #fff;
+    }
+
+    .height-row { display: flex; align-items: center; gap: 10px; }
+    .height-row .ck-input { max-width: 110px; }
+    .height-hint { font-size: 8.5pt; color: var(--text-mute); }
+
+    /* ── ARIA OPTION ──────────────────────────── */
+    .ck-options { display: flex; flex-direction: column; gap: 8px; margin-top: 2px; }
+    .ck-option {
+      display: flex; align-items: center; gap: 10px;
+      cursor: pointer; padding: 9px 12px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      transition: border-color 0.13s, background 0.13s;
+    }
+    .ck-option.checked { border-color: #111; background: #f0f0f0; }
+    .ck-option input { width: 15px; height: 15px; cursor: pointer; accent-color: #111; }
+    .ck-option-text { display: flex; flex-direction: column; gap: 2px; }
+    .ck-option-title { font-size: 9.5pt; font-weight: 600; color: var(--text); }
+    .ck-option-title code {
+      background: rgba(0,0,0,0.06);
+      padding: 1px 5px; border-radius: 4px; font-size: 9pt;
+    }
+    .ck-option-desc { font-size: 8pt; color: var(--text-mute); }
+
+    /* ── BUTTON ───────────────────────────────── */
+    .ck-btn-primary {
+      width: 100%; padding: 10px;
+      background: var(--red); color: #fff; border: none;
+      border-radius: var(--radius);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 10pt; font-weight: 600;
+      cursor: pointer;
+      transition: all 0.14s;
+      display: flex; align-items: center; justify-content: center; gap: 7px;
+    }
+    .ck-btn-primary:hover { background: var(--red-dark); transform: translateY(-1px); box-shadow: var(--sh-lift); }
+
+    /* ── OUTPUT ───────────────────────────────── */
+    .ck-output-box {
+      border: 1px solid var(--border); border-radius: var(--radius);
+      overflow: hidden; background: #1a1d2e;
+    }
+    .ck-output-toolbar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 6px 12px;
+      background: #22253a; border-bottom: 1px solid #32364f;
+    }
+    .ck-output-toolbar span {
+      font-family: 'DM Mono', monospace;
+      font-size: 7.5pt; color: #6b7280;
+      letter-spacing: 0.8px; text-transform: uppercase;
+    }
+    .ck-btn-copy {
+      display: flex; align-items: center; gap: 5px;
+      padding: 4px 11px;
+      background: rgba(0,135,90,0.14); color: var(--green);
+      border: 1px solid rgba(0,135,90,0.22); border-radius: 6px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 8pt; font-weight: 600;
+      cursor: pointer; transition: all 0.13s;
+    }
+    .ck-btn-copy:hover { background: rgba(0,135,90,0.22); }
+    .ck-btn-copy.copied { opacity: .7; }
+    .ck-output-code {
+      padding: 13px 15px;
+      font-family: 'DM Mono', monospace;
+      font-size: 8.5pt; color: #a0aec0;
+      line-height: 1.7; white-space: pre-wrap; word-break: break-all;
+      min-height: 70px;
+    }
+    .ck-output-code.empty { color: #3d4566; font-style: italic; }
+
+    .ck-divider { height: 1px; background: var(--border); margin: 2px 0; }
+    .ck-error {
+      display: none;
+      background: #fff5f5; border: 1px solid #fecaca;
+      border-radius: var(--radius); padding: 8px 13px;
+      color: #991b1b; font-size: 9pt; font-weight: 500; text-align: center;
+    }
+    .gap-16 { display: flex; flex-direction: column; gap: 16px; }
+
+    /* ── PAGE LAYOUT: tool + guide ────────────── */
+    body { padding: 28px 32px; }
+    .ifra-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 510px) minmax(0, 1fr);
+      gap: 28px;
+      align-items: start;
+      max-width: 1136px;
+    }
+    .ifra-tool { position: sticky; top: 28px; }
+
+    /* ── GUIDE ────────────────────────────────── */
+    .gd-card { max-width: none; }
+    .gd-body { padding: 20px 24px 8px; }
+    .gd-prep {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      margin-bottom: 6px;
+    }
+    .gd-prep-title { font-size: 10pt; font-weight: 700; margin-bottom: 8px; }
+    .gd-prep ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+    .gd-prep li { font-size: 9.5pt; line-height: 1.55; color: var(--text-sec); padding-left: 16px; position: relative; }
+    .gd-prep li::before {
+      content: ''; position: absolute; left: 0; top: 0.62em;
+      width: 6px; height: 6px; border-radius: 50%; background: var(--red);
+    }
+    .gd-prep li strong { color: var(--text); font-weight: 600; }
+    .gd-code {
+      font-family: 'DM Mono', monospace; font-size: 8.5pt;
+      background: rgba(0,0,0,0.06); padding: 1px 6px; border-radius: 4px;
+      color: var(--text); word-break: break-word;
+    }
+    .gd-steps { list-style: none; }
+    .gd-step { display: flex; gap: 14px; padding: 20px 0; border-top: 1px solid var(--border); }
+    .gd-steps .gd-step:first-child { border-top: none; }
+    .gd-num {
+      width: 26px; height: 26px; flex-shrink: 0;
+      background: var(--red); color: #fff;
+      border-radius: 7px;
+      font-size: 10pt; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .gd-step-body { flex: 1; min-width: 0; }
+    .gd-step-body h3 { font-size: 11pt; font-weight: 700; letter-spacing: -0.2px; margin-bottom: 4px; }
+    .gd-step-body p { font-size: 9.5pt; line-height: 1.6; color: var(--text-sec); max-width: 62ch; }
+    .gd-step-body p + p { margin-top: 6px; }
+    .gd-step-body strong { color: var(--text); font-weight: 600; }
+    .gd-shot { margin-top: 12px; }
+    .gd-shot img {
+      display: block; width: 100%; height: auto;
+      border: 1px solid var(--border); border-radius: 8px;
+    }
+    .gd-shot figcaption { font-size: 8pt; color: var(--text-mute); margin-top: 6px; }
+    .gd-note {
+      margin-top: 10px; padding: 9px 12px;
+      border-left: 3px solid var(--red);
+      background: rgba(230,0,40,0.05);
+      border-radius: 0 8px 8px 0;
+      font-size: 9pt; line-height: 1.55; color: var(--text-sec); max-width: 62ch;
+    }
+    .gd-done {
+      margin: 4px 0 18px; padding: 10px 14px;
+      background: rgba(0,135,90,0.08); border: 1px solid rgba(0,135,90,0.2);
+      border-radius: var(--radius);
+      font-size: 9.5pt; font-weight: 600; color: var(--green);
+    }
+
+    @media (max-width: 980px) {
+      body { padding: 16px; }
+      .ifra-layout { grid-template-columns: minmax(0, 1fr); }
+      .ifra-tool { position: static; }
+      .ck-card { max-width: none; }
+    }
