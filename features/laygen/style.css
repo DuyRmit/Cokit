@@ -1,3 +1,235 @@
+/* ===== SHARED BASE (copy từ assets/css/tool-base.css) ===== */
+/* ═══════════════════════════════════════════
+   DESIGN SYSTEM — RMIT CodeKit V3
+   Clean Minimal SaaS | 1200px Canvas embed
+═══════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  /* Brand */
+  --red:        #e60028;
+  --red-dark:   #b8001f;
+  --navy:       #000054;
+  --gold:       #FAC800;
+  --blue:       #0056b3;
+  --blue-dark:  #003d82;
+  --green:      #00875a;
+
+  /* Neutral surface palette */
+  --bg:         #ffffff;
+  --surface:    #ffffff;
+  --surface2:   #f7f8fa;
+  --border:     #e8e9ec;
+  --border-med: #d0d2d9;
+
+  /* Text scale */
+  --text:       #111111;
+  --text-sec:   #6b7280;
+  --text-mute:  #9ca3af;
+
+  /* Radius */
+  --radius:     10px;
+  --radius-lg:  14px;
+
+  /* Shadow */
+  --sh-card: 0 1px 3px rgba(0,0,0,0.07), 0 4px 12px rgba(0,0,0,0.04);
+  --sh-lift: 0 4px 16px rgba(0,0,0,0.10), 0 1px 4px rgba(0,0,0,0.06);
+
+  /* Layout */
+  --topbar-h:  52px;
+  --navbar-h:  44px;
+  --max-w:     1200px;
+}
+
+/* ── BASE ─────────────────────────────────── */
+html, body { height: 100%; margin: 0; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  height: 100%;
+}
+
+/* ── PAGE SHELL (flex column, max 1200px) ──── */
+.page-shell {
+  max-width: var(--max-w);
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  min-height: 600px;
+}
+
+.content-shell { display: flex; flex: 1; overflow: hidden; }
+.main { flex: 1; overflow-y: auto; overflow-x: hidden; }
+.panel { display: none !important; }
+.panel.active { display: block !important; }
+/* ── SHARED CARD ─────────────────────────────── */
+.ck-card {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  box-shadow: var(--sh-card);
+}
+.ck-card-header {
+  padding: 18px 22px 14px;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface2);
+}
+.ck-header-badge {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: rgba(230,0,40,0.07);
+  border: 1px solid rgba(230,0,40,0.14);
+  color: var(--red);
+  font-size: 7pt; font-weight: 700;
+  letter-spacing: 1.2px; text-transform: uppercase;
+  padding: 2px 9px; border-radius: 20px; margin-bottom: 7px;
+}
+.ck-card-header h2 { color: var(--text); font-size: 15pt; font-weight: 700; letter-spacing: -0.3px; }
+.ck-card-header p  { color: var(--text-sec); font-size: 9pt; margin-top: 3px; }
+.ck-card-body { padding: 20px 22px 22px; }
+.ck-card-footer {
+  padding: 9px 22px;
+  border-top: 1px solid var(--border);
+  background: var(--surface2);
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  font-size: 8pt; color: var(--text-mute);
+  text-align: center;
+}
+
+/* step numbering */
+.ck-step { display: flex; flex-direction: column; gap: 7px; }
+.ck-step-label { display: flex; align-items: center; gap: 8px; }
+.ck-step-num {
+  width: 19px; height: 19px;
+  background: #111;
+  color: #fff; border-radius: 50%;
+  font-size: 8pt; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.ck-step-label label { font-size: 10pt; font-weight: 600; color: var(--text); }
+
+/* inputs */
+.ck-input, .ck-textarea, .ck-select {
+  width: 100%;
+  padding: 9px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10pt; color: var(--text);
+  background: var(--surface2);
+  outline: none;
+  transition: border-color 0.14s, box-shadow 0.14s;
+}
+.ck-input:focus, .ck-textarea:focus, .ck-select:focus {
+  border-color: var(--border-med);
+  box-shadow: 0 0 0 3px rgba(0,0,0,0.05);
+  background: #fff;
+}
+.ck-textarea { resize: vertical; }
+
+/* buttons */
+.ck-btn-primary {
+  width: 100%; padding: 10px;
+  background: #111111; color: #fff; border: none;
+  border-radius: var(--radius);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10pt; font-weight: 600;
+  cursor: pointer;
+  transition: all 0.14s;
+  display: flex; align-items: center; justify-content: center; gap: 7px;
+}
+.ck-btn-primary:hover { background: #2a2a2a; transform: translateY(-1px); box-shadow: var(--sh-lift); }
+.ck-btn-primary.red-btn  { background: var(--red); }
+.ck-btn-primary.red-btn:hover  { background: var(--red-dark); }
+.ck-btn-primary.blue-btn { background: var(--blue); }
+.ck-btn-primary.blue-btn:hover { background: var(--blue-dark); }
+
+.ck-btn-secondary {
+  padding: 8px 15px;
+  background: var(--surface); color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 9.5pt; font-weight: 600;
+  cursor: pointer; transition: all 0.14s;
+}
+.ck-btn-secondary:hover { border-color: var(--border-med); background: var(--surface2); }
+
+/* output box */
+.ck-output-box {
+  border: 1px solid var(--border); border-radius: var(--radius);
+  overflow: hidden; background: #1a1d2e;
+}
+.ck-output-toolbar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 6px 12px;
+  background: #22253a; border-bottom: 1px solid #32364f;
+}
+.ck-output-toolbar span {
+  font-family: 'DM Mono', monospace;
+  font-size: 7.5pt; color: #6b7280;
+  letter-spacing: 0.8px; text-transform: uppercase;
+}
+.ck-btn-copy {
+  display: flex; align-items: center; gap: 5px;
+  padding: 4px 11px;
+  background: rgba(0,135,90,0.14); color: var(--green);
+  border: 1px solid rgba(0,135,90,0.22); border-radius: 6px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 8pt; font-weight: 600;
+  cursor: pointer; transition: all 0.13s;
+}
+.ck-btn-copy:hover { background: rgba(0,135,90,0.22); }
+.ck-btn-copy.copied { opacity: .7; }
+.ck-output-code {
+  padding: 13px 15px;
+  font-family: 'DM Mono', monospace;
+  font-size: 8.5pt; color: #a0aec0;
+  line-height: 1.7; white-space: pre-wrap; word-break: break-all;
+  min-height: 70px;
+}
+.ck-output-code.empty { color: #3d4566; font-style: italic; }
+.ck-divider { height: 1px; background: var(--border); margin: 2px 0; }
+.ck-error {
+  display: none;
+  background: #fff5f5; border: 1px solid #fecaca;
+  border-radius: var(--radius); padding: 8px 13px;
+  color: #991b1b; font-size: 9pt; font-weight: 500; text-align: center;
+}
+.gap-16 { display: flex; flex-direction: column; gap: 16px; }
+.gap-12 { display: flex; flex-direction: column; gap: 12px; }
+
+/* ── SHARED BENTO CARD (TabGen / NavGen / Details / Coldate) ──── */
+.bento-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 18px;
+  box-shadow: var(--sh-card);
+  transition: border-color 0.14s, box-shadow 0.14s;
+}
+.bento-card:hover { border-color: var(--border-med); box-shadow: var(--sh-lift); }
+.card-label {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 7.5pt; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--text-mute); margin-bottom: 13px;
+}
+.icon-badge {
+  width: 17px; height: 17px; border-radius: 5px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.6rem;
+}
+.badge-navy  { background: rgba(0,0,84,0.08);   color: var(--navy); }
+.badge-red   { background: rgba(230,0,40,0.08);  color: var(--red); }
+.badge-green { background: rgba(0,135,90,0.08);  color: var(--green); }
+.badge-gold  { background: rgba(250,200,0,0.14); color: #a07800; }
+.badge-violet{ background: rgba(124,108,252,0.1);color: #5b4fcf; }
+
+/* ===== LAYGEN ===== */
 /* ── LAYGEN ──────────────────────────────── */
 #panel-laygen { flex-direction: column; height: 100%; }
 #panel-laygen .lg-header {

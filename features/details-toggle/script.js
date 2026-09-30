@@ -1,4 +1,21 @@
 /* ════════════════════════════════════════
+   SHARED UTIL
+════════════════════════════════════════ */
+function copyToClipboard(text,btn,defaultLabel,copiedLabel){
+  const ta=document.createElement('textarea');ta.value=text;ta.style.cssText='position:fixed;top:0;left:0;opacity:0;pointer-events:none;';document.body.appendChild(ta);ta.focus();ta.select();
+  try{document.execCommand('copy');btn.textContent=copiedLabel;btn.classList.add('copied');setTimeout(()=>{btn.textContent=defaultLabel;btn.classList.remove('copied');},2000);}catch(e){alert('Auto-copy failed. Please copy manually.');}
+  document.body.removeChild(ta);
+}
+
+function tgFallbackCopy(text,cb){
+  const ta=document.createElement('textarea');
+  ta.value=text;ta.style.cssText='position:fixed;top:-9999px;opacity:0;';
+  document.body.appendChild(ta);ta.focus();ta.select();
+  try{document.execCommand('copy');cb();}catch(e){alert('Copy failed — please select the code manually.');}
+  document.body.removeChild(ta);
+}
+
+/* ════════════════════════════════════════
    DETAILS TOGGLE
 ════════════════════════════════════════ */
 let dgTemplate='default';
