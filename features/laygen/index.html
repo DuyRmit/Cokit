@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LayGen — CoKit</title>
+  <link rel="icon" type="image/png" href="../../assets/img/rmit-logo.png">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/tool-base.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="page-shell">
+<div class="content-shell">
+<main class="main">
+
+  <!-- ══════════ LAYGEN PANEL ══════════ -->
+  <div id="panel-laygen" class="panel active">
+    <div class="lg-header">
+      <h2>LayGen — Grid Layout Builder</h2>
+      <button id="lg-get-code-button" class="ck-btn-secondary" onclick="lgOpenModal()" style="padding:9px 18px;">Get HTML Code</button>
+    </div>
+    <div class="lg-body">
+      <aside id="lg-control-panel">
+        <section class="lg-panel-section">
+          <h2 class="lg-panel-title">1. Layout Structure</h2>
+          <div class="lg-form-group"><label>Total Boxes</label><div id="lg-box-count-selector" class="lg-selector-group"></div></div>
+          <div class="lg-form-group"><label>Available Layouts</label><div id="lg-layout-selector" class="lg-layout-tiles"></div></div>
+        </section>
+        <section class="lg-panel-section">
+          <h2 class="lg-panel-title">2. Style & Effects</h2>
+          <div class="lg-form-group"><label>Box Style</label><div id="lg-style-selector" class="lg-style-tiles"></div></div>
+          <div id="lg-style-customization-section" class="lg-form-group">
+            <div id="lg-border-width-control" class="lg-slider-control"><label>Border Width</label><input type="range" id="lg-border-width-slider" min="1" max="10"><input type="number" id="lg-border-width-input" min="1" max="10"><span>px</span></div>
+            <div id="lg-border-radius-control" class="lg-slider-control"><label>Border Radius</label><input type="range" id="lg-border-radius-slider" min="0" max="30"><input type="number" id="lg-border-radius-input" min="0" max="30"><span>px</span></div>
+          </div>
+        </section>
+        <section id="lg-color-section" class="lg-panel-section">
+          <label>Accent Color</label>
+          <div class="lg-color-picker" id="lg-color-picker">
+            <div class="lg-color-dot active" data-palette="navy"  title="Navy"   style="background:#000054;" onclick="lgSetColor('navy',this)"></div>
+            <div class="lg-color-dot"        data-palette="red"   title="Red"    style="background:#e61e2a;" onclick="lgSetColor('red',this)"></div>
+            <div class="lg-color-dot"        data-palette="yellow"title="Yellow" style="background:#fac800;" onclick="lgSetColor('yellow',this)"></div>
+            <div class="lg-color-dot"        data-palette="green" title="Green"  style="background:#00875a;" onclick="lgSetColor('green',this)"></div>
+            <div class="lg-color-dot"        data-palette="grey"  title="Grey"   style="background:#555555;" onclick="lgSetColor('grey',this)"></div>
+          </div>
+        </section>
+
+        <section id="lg-content-section" class="lg-panel-section" style="display:none;">
+          <h2 id="lg-content-section-title" class="lg-panel-title">3. Content</h2>
+          <div class="lg-form-group"><label>Title</label><input type="text" id="lg-content-title-input" class="lg-input-text"></div>
+          <div class="lg-form-group"><label>Description</label><textarea id="lg-content-desc-input" class="lg-textarea" rows="4"></textarea></div>
+          <div class="lg-form-group"><label class="lg-checkbox-label"><input type="checkbox" id="lg-hide-box-checkbox"> Hide content & style for this box</label></div>
+        </section>
+      </aside>
+      <div id="lg-preview-canvas"></div>
+    </div>
+  </div>
+  <div id="lg-code-modal" class="lg-modal-overlay">
+    <div class="lg-modal-content">
+      <div class="lg-modal-header"><h3>Get HTML Code</h3><button id="lg-close-modal-button" class="lg-close-button">&times;</button></div>
+      <div class="lg-modal-body"><p class="instruction"><strong>Code selected. Press Ctrl+C to copy.</strong></p><textarea id="lg-generated-code-textarea" readonly></textarea></div>
+      <div class="lg-modal-footer">
+        <button id="lg-copy-code-button" class="lg-btn btn-primary">Copy Code</button>
+        <button id="lg-switch-code-type-button" class="lg-btn btn-secondary">Switch to Layout Only</button>
+      </div>
+    </div>
+  </div>
+
+
+</main>
+</div>
+</div>
+
+<script src="../../assets/js/common.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

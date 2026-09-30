@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Table Gen — CoKit</title>
+  <link rel="icon" type="image/png" href="../../assets/img/rmit-logo.png">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/tool-base.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="page-shell">
+<div class="content-shell">
+<main class="main">
+
+  <!-- ══════════ TABLE GENERATOR PANEL ══════════ -->
+  <div id="panel-tablegen" class="panel active">
+
+    <!-- LEFT CONTROLS -->
+    <div class="tbl-control">
+
+      <div class="tbl-sec">⊞ Structure</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+        <div class="tbl-field">
+          <label>Columns <span class="tbl-badge" id="tbl-col-b">3</span></label>
+          <input type="number" id="tbl-num-cols" value="3" min="1" max="12">
+        </div>
+        <div class="tbl-field">
+          <label>Rows <span class="tbl-badge" id="tbl-row-b">4</span></label>
+          <input type="number" id="tbl-num-rows" value="4" min="1" max="30">
+        </div>
+      </div>
+
+      <div class="tbl-sec">◈ Header</div>
+      <div class="tbl-toggle-row">
+        <span class="tbl-toggle-label">Show header row</span>
+        <label class="tbl-toggle"><input type="checkbox" id="tbl-has-header" checked><span class="tbl-slider"></span></label>
+      </div>
+      <div id="tbl-header-color-field" class="tbl-field">
+        <label>Header color</label>
+        <div class="tbl-preset-grid">
+          <button class="tbl-preset-btn active" style="background:#000054;color:#fff;" data-bg="#000054" data-fg="#ffffff" onclick="tblSetPreset(this)">Navy</button>
+          <button class="tbl-preset-btn" style="background:#fac800;color:#000054;" data-bg="#fac800" data-fg="#000054" onclick="tblSetPreset(this)">Yellow</button>
+          <button class="tbl-preset-btn" style="background:#e61e2a;color:#fff;" data-bg="#e61e2a" data-fg="#ffffff" onclick="tblSetPreset(this)">Red</button>
+          <button class="tbl-preset-btn" style="background:#e6e6ef;color:#000054;" data-bg="#e6e6ef" data-fg="#000054" onclick="tblSetPreset(this)">Navy 10%</button>
+          <button class="tbl-preset-btn" style="background:#fef9e6;color:#000054;" data-bg="#fef9e6" data-fg="#000054" onclick="tblSetPreset(this)">Yellow 10%</button>
+          <button class="tbl-preset-btn" style="background:#fce8e9;color:#000054;" data-bg="#fce8e9" data-fg="#000054" onclick="tblSetPreset(this)">Red 10%</button>
+        </div>
+      </div>
+
+      <div class="tbl-sec">≡ Row Colors</div>
+      <div class="tbl-toggle-row">
+        <span class="tbl-toggle-label">Alternating row colors</span>
+        <label class="tbl-toggle"><input type="checkbox" id="tbl-alt-rows" checked><span class="tbl-slider"></span></label>
+      </div>
+      <div id="tbl-alt-wrap" class="tbl-field">
+        <label>Color pair (even / odd)</label>
+        <div class="tbl-pair-grid">
+          <button class="tbl-pair-btn active" data-even="#ffffff" data-odd="#e6e6ef" onclick="tblSetPair(this)">
+            <div class="tbl-pair-swatch"><div style="background:#fff;border:1px solid #ddd;"></div><div style="background:#e6e6ef;"></div></div>
+            White / Navy 10%
+          </button>
+          <button class="tbl-pair-btn" data-even="#ffffff" data-odd="#fef9e6" onclick="tblSetPair(this)">
+            <div class="tbl-pair-swatch"><div style="background:#fff;border:1px solid #ddd;"></div><div style="background:#fef9e6;"></div></div>
+            White / Yellow 10%
+          </button>
+          <button class="tbl-pair-btn" data-even="#ffffff" data-odd="#fce8e9" onclick="tblSetPair(this)">
+            <div class="tbl-pair-swatch"><div style="background:#fff;border:1px solid #ddd;"></div><div style="background:#fce8e9;"></div></div>
+            White / Red 10%
+          </button>
+          <button class="tbl-pair-btn" data-even="#e6e6ef" data-odd="#fef9e6" onclick="tblSetPair(this)">
+            <div class="tbl-pair-swatch"><div style="background:#e6e6ef;"></div><div style="background:#fef9e6;"></div></div>
+            Navy 10% / Yellow 10%
+          </button>
+        </div>
+      </div>
+
+      <div class="tbl-sec">╌ Borders</div>
+      <div class="tbl-field">
+        <label>Thickness: <span id="tbl-line-val">1px</span></label>
+        <input type="range" id="tbl-line-thickness" min="0" max="4" step="0.5" value="1"
+          oninput="document.getElementById('tbl-line-val').textContent=this.value+'px';tblGenerate()">
+      </div>
+      <div class="tbl-field">
+        <label>Border color</label>
+        <div class="tbl-pill-row">
+          <button class="tbl-pill-btn active" style="background:#d0d0d0;color:#333;" data-bc="#d0d0d0" onclick="tblSetBorder(this)">Gray</button>
+          <button class="tbl-pill-btn" style="background:#000054;color:#fff;" data-bc="#000054" onclick="tblSetBorder(this)">Navy</button>
+          <button class="tbl-pill-btn" style="background:#fac800;color:#000054;" data-bc="#fac800" onclick="tblSetBorder(this)">Yellow</button>
+          <button class="tbl-pill-btn" style="background:#e61e2a;color:#fff;" data-bc="#e61e2a" onclick="tblSetBorder(this)">Red</button>
+          <button class="tbl-pill-btn" style="background:#f0f0f0;color:#999;border:1px solid #ccc;" data-bc="transparent" onclick="tblSetBorder(this)">None</button>
+        </div>
+      </div>
+
+      <div class="tbl-sec">⌂ Layout</div>
+      <div class="tbl-field">
+        <label>Text alignment</label>
+        <div class="tbl-align-row">
+          <button class="tbl-align-btn active" id="tbl-align-left" onclick="tblSetAlign('left')" title="Left">☰</button>
+          <button class="tbl-align-btn" id="tbl-align-center" onclick="tblSetAlign('center')" title="Center">≡</button>
+          <button class="tbl-align-btn" id="tbl-align-right" onclick="tblSetAlign('right')" title="Right">☱</button>
+        </div>
+      </div>
+      <div class="tbl-field">
+        <label>Cell padding</label>
+        <select id="tbl-padding-size" onchange="tblGenerate()">
+          <option value="5px 8px">Compact</option>
+          <option value="9px 13px" selected>Normal</option>
+          <option value="13px 17px">Comfortable</option>
+          <option value="17px 22px">Spacious</option>
+        </select>
+      </div>
+
+      <div class="tbl-sec">⊕ Rowspan Col 1</div>
+      <div class="tbl-toggle-row">
+        <span class="tbl-toggle-label">Merge cells in Col 1</span>
+        <label class="tbl-toggle"><input type="checkbox" id="tbl-enable-span"><span class="tbl-slider"></span></label>
+      </div>
+      <div id="tbl-span-wrap" style="display:none;" class="tbl-field">
+        <label>Rows per group</label>
+        <input type="number" id="tbl-span-size" value="2" min="2" max="10">
+      </div>
+
+      <div class="tbl-sec">↗ Section Break</div>
+      <div class="tbl-toggle-row">
+        <span class="tbl-toggle-label">Add thick divider</span>
+        <label class="tbl-toggle"><input type="checkbox" id="tbl-section-break"><span class="tbl-slider"></span></label>
+      </div>
+      <div id="tbl-break-wrap" style="display:none;">
+        <div class="tbl-field" style="margin-top:4px;">
+          <label>Break after row #</label>
+          <input type="number" id="tbl-break-row" value="2" min="1">
+        </div>
+        <div class="tbl-field" style="margin-top:6px;">
+          <label>Divider color</label>
+          <div class="tbl-pill-row">
+            <button class="tbl-pill-btn active" style="background:#000054;color:#fff;" data-bc2="#000054" onclick="tblSetBreakColor(this)">Navy</button>
+            <button class="tbl-pill-btn" style="background:#fac800;color:#000054;" data-bc2="#fac800" onclick="tblSetBreakColor(this)">Yellow</button>
+            <button class="tbl-pill-btn" style="background:#e61e2a;color:#fff;" data-bc2="#e61e2a" onclick="tblSetBreakColor(this)">Red</button>
+            <button class="tbl-pill-btn" style="background:#d0d0d0;color:#333;" data-bc2="#d0d0d0" onclick="tblSetBreakColor(this)">Gray</button>
+          </div>
+        </div>
+      </div>
+
+      <button class="tbl-gen-btn" onclick="tblGenerate()">▶ Regenerate Table</button>
+      <button class="tbl-copy-btn" id="tbl-copy-sidebar-btn" onclick="tblCopyHTML()">⎘ Copy HTML for Canvas</button>
+
+    </div><!-- /tbl-control -->
+
+    <!-- RIGHT PREVIEW -->
+    <div class="tbl-preview">
+      <div class="tbl-preview-label">Live Preview</div>
+      <div class="tbl-preview-wrap">
+        <div id="tbl-table-output"></div>
+      </div>
+      <div class="tbl-preview-label">Generated HTML — Canvas-ready (inline styles)</div>
+      <div class="tbl-code-wrap">
+        <div class="tbl-code-toolbar">
+          <span>table.html</span>
+          <button class="tbl-code-copy-btn" id="tbl-code-copy-btn" onclick="tblCopyHTML()">📋 Copy Code</button>
+        </div>
+        <div id="tbl-code-output"></div>
+      </div>
+    </div><!-- /tbl-preview -->
+
+  </div><!-- /panel-tablegen -->
+
+
+
+</main>
+</div>
+</div>
+
+<script src="../../assets/js/common.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

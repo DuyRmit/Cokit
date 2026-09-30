@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tab Gen — CoKit</title>
+  <link rel="icon" type="image/png" href="../../assets/img/rmit-logo.png">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="../../assets/css/tool-base.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="page-shell">
+<div class="content-shell">
+<main class="main">
+
+  <!-- ══════════ TAB GENERATOR PANEL ══════════ -->
+  <div id="panel-tabgen" class="panel active" style="padding:22px;">
+    <div style="margin-bottom:14px;">
+      <div style="font-size:7.5pt;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;color:var(--text-mute);margin-bottom:5px;">Canvas Tabs</div>
+      <div style="font-size:15pt;font-weight:700;color:var(--text);">Tab Code Generator</div>
+      <div style="font-size:9pt;color:var(--text-sec);margin-top:3px;">Build interactive jQuery UI tabs and export clean HTML.</div>
+    </div>
+    <div class="tg-bento-grid">
+      <div class="tg-bento-card bento-card">
+        <div class="tg-card-label"><span class="tg-icon-badge tg-badge-navy">✦</span> Configuration <span class="tg-tab-counter" id="tg-tab-count-badge">0 / 4</span></div>
+        <div id="tg-tab-settings-container">
+          <div class="tg-empty-state"><span class="emoji">🗂</span>No tabs yet. Hit <strong>Add Tab</strong>!</div>
+        </div>
+        <div class="tg-action-row">
+          <button class="tg-btn-primary" id="tg-add-tab-btn">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Add Tab
+          </button>
+          <button class="tg-btn-secondary" id="tg-generate-code-btn">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg> Generate Code
+          </button>
+        </div>
+      </div>
+      <div class="tg-bento-card bento-card">
+        <div class="tg-card-label"><span class="tg-icon-badge tg-badge-red">◈</span> Live Preview</div>
+        <div id="tg-preview-tabs" class="enhanceable_content tabs"><ul></ul></div>
+      </div>
+      <div class="tg-bento-card bento-card full-width">
+        <div class="tg-card-label"><span class="tg-icon-badge tg-badge-green">⟨/⟩</span> Generated HTML</div>
+        <textarea class="tg-code-output" id="tg-generated-html-output" readonly placeholder="// Your HTML will appear here..."></textarea>
+        <div class="tg-copy-row"><button class="tg-btn-copy" id="tg-copy-btn">Copy Code</button></div>
+      </div>
+    </div>
+  </div>
+
+
+</main>
+</div>
+</div>
+
+<script src="../../assets/js/common.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

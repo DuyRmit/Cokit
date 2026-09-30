@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meet Lecturer — CoKit</title>
+  <link rel="icon" type="image/png" href="../../assets/img/rmit-logo.png">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/tool-base.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="page-shell">
+<div class="content-shell">
+<main class="main">
+
+  <!-- ══════════ MEET LECTURER PANEL ══════════ -->
+  <div id="panel-meetlecturer" class="panel active">
+
+    <!-- Inner tab bar -->
+    <div class="ml-tabs">
+      <div class="ml-tab active" onclick="mlSwitchTab('builder', this)">👤 Profile Builder</div>
+      <div class="ml-tab" onclick="mlSwitchTab('crop', this)">✂️ Image Crop</div>
+    </div>
+
+    <!-- ── PANE 1: Profile Builder ── -->
+    <div class="ml-pane active" id="ml-pane-builder">
+      <div class="ml-builder">
+
+        <!-- Left: form controls -->
+        <div class="ml-form-scroll">
+          <div id="ml-profile-forms"></div>
+          <button class="ml-add-btn" onclick="mlAddProfile()">＋ Add Another Lecturer</button>
+          <div class="ml-action-btns">
+            <button class="ml-gen-btn" onclick="mlGenerate()">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:4px;"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              Generate HTML
+            </button>
+            <button class="ml-copy-btn" id="ml-copy-sidebar" onclick="mlCopy()">⎘ Copy HTML for Canvas</button>
+          </div>
+        </div>
+
+        <!-- Right: preview + code -->
+        <div class="ml-right">
+          <div class="ml-preview-label">Live Preview</div>
+          <div class="ml-preview-wrap">
+            <div id="ml-preview-output" style="display:flex;flex-wrap:wrap;gap:16px;"></div>
+          </div>
+          <div class="ml-preview-label">Generated HTML — Canvas-ready</div>
+          <div class="ml-code-wrap">
+            <div class="ml-code-toolbar">
+              <span>lecturer-cards.html</span>
+              <button class="ml-code-copy-btn" id="ml-code-copy-btn" onclick="mlCopy()">📋 Copy Code</button>
+            </div>
+            <div id="ml-code-output"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── PANE 2: Image Crop ── -->
+    <div class="ml-pane" id="ml-pane-crop">
+      <div class="ml-crop-pane">
+
+        <div class="ml-crop-left">
+          <div class="ml-result-label">Upload &amp; Position</div>
+          <div class="ml-crop-canvas-wrap" id="ml-crop-container">
+            <div class="ml-crop-placeholder">
+              <span class="icon">🖼</span>
+              <span>Upload an image to start</span>
+            </div>
+          </div>
+          <div class="ml-crop-controls">
+            <label class="ml-upload-label" for="ml-image-upload">
+              ⬆ Upload Image
+              <input type="file" id="ml-image-upload" accept="image/*" style="display:none;">
+            </label>
+            <button class="ml-crop-btn" id="ml-crop-btn" onclick="mlCropImage()">✂ Crop to 250×250</button>
+            <p class="ml-crop-hint">Drag the image to position it inside the 250×250 frame, then click Crop.</p>
+          </div>
+        </div>
+
+        <div class="ml-crop-right">
+          <div class="ml-result-label">Result</div>
+          <div class="ml-result-wrap" id="ml-crop-result">
+            <p style="color:var(--text-mute);font-size:9pt;">Cropped image will appear here.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div><!-- /panel-meetlecturer -->
+
+</main>
+</div>
+</div>
+
+<script src="../../assets/js/common.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

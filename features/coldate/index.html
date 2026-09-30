@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coldate — CoKit</title>
+  <link rel="icon" type="image/png" href="../../assets/img/rmit-logo.png">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/tool-base.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="page-shell">
+<div class="content-shell">
+<main class="main">
+
+  <!-- ══════════ COLDATE PANEL ══════════ -->
+  <div id="panel-coldate" class="panel active">
+    <div class="cd-header">
+      <h2>Coldate</h2>
+      <p>Paste your HTML/CSS and replace color codes in bulk.</p>
+    </div>
+    <div class="cd-bento-grid">
+      <div class="cd-bento-card bento-card cd-input-section">
+        <h2>Input Code</h2>
+        <textarea id="cd-inputCode" class="cd-textarea" placeholder="Paste your HTML/CSS code here..."></textarea>
+        <h3>Color Replacements</h3>
+        <div id="cd-colorPairsContainer"></div>
+        <button id="cd-addColorBtn" class="cd-btn add-btn">Add Color Replacement</button>
+        <button id="cd-processBtn" class="cd-btn">Update Colors</button>
+      </div>
+      <div class="cd-bento-card bento-card">
+        <h3>Detected Colors</h3>
+        <div id="cd-colorList" class="cd-color-list"></div>
+        <div class="cd-stats">
+          <span id="cd-colorCount">0 colors detected</span>
+          <button id="cd-scanColorsBtn" class="cd-btn" style="padding:6px 12px;font-size:9pt;">Scan Colors</button>
+        </div>
+      </div>
+      <div class="cd-bento-card bento-card cd-output-section">
+        <h2>Output Code</h2>
+        <textarea id="cd-outputCode" class="cd-output-textarea" readonly placeholder="Your updated code will appear here..."></textarea>
+        <button id="cd-copyBtn" class="cd-copy-btn">Copy</button>
+        <div class="cd-stats">
+          <span id="cd-replaceCount">0 replacements made</span>
+          <span id="cd-timeInfo">Ready</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</main>
+</div>
+</div>
+
+<script src="../../assets/js/common.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

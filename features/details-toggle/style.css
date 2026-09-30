@@ -1,0 +1,37 @@
+/* ── DETAILS TOGGLE ─────────────────────────── */
+#panel-details { padding: 24px 28px; overflow-y: auto; }
+.dg-header { margin: 0 0 14px; }
+.dg-header h2 { font-size: 15pt; font-weight: 700; color: var(--text); }
+.dg-header p  { color: var(--text-sec); font-size: 9pt; margin-top: 3px; }
+.dg-header p code { background: var(--surface2); color: var(--text); border: 1px solid var(--border); padding: 1px 5px; border-radius: 4px; font-family: 'DM Mono', monospace; font-size: 8pt; }
+.dg-bento-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-items: start; max-width: 1100px; }
+.dg-bento-card { }/* uses .bento-card */
+.dg-bento-card.full-width { grid-column: 1 / -1; }
+.dg-card-label { display: inline-flex; align-items: center; gap: 5px; font-size: 7.5pt; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-mute); margin-bottom: 10px; }
+.dg-icon-badge { width: 17px; height: 17px; border-radius: 5px; display: flex; align-items: center; justify-content: center; font-size: 0.6rem; }
+.dg-badge-navy  { background: rgba(0,0,84,0.08);  color: var(--navy); }
+.dg-badge-red   { background: rgba(230,0,40,0.08); color: var(--red); }
+.dg-badge-green { background: rgba(0,135,90,0.08); color: var(--green); }
+.dg-badge-gold  { background: rgba(250,200,0,0.14);color: #a07800; }
+.dg-field { margin-bottom: 10px; }
+.dg-field:last-child { margin-bottom: 0; }
+.dg-field label { display: block; font-size: 7.5pt; font-weight: 600; color: var(--text-mute); margin-bottom: 3px; letter-spacing: 0.04em; text-transform: uppercase; }
+.dg-field input, .dg-field textarea { width: 100%; background: var(--surface2); border: 1px solid var(--border); border-radius: 7px; color: var(--text); padding: 7px 10px; font-family: 'DM Sans', sans-serif; font-size: 9pt; transition: border-color 0.13s, box-shadow 0.13s; resize: vertical; outline: none; }
+.dg-field input:focus, .dg-field textarea:focus { border-color: var(--border-med); box-shadow: 0 0 0 3px rgba(0,0,0,0.04); background: #fff; }
+.dg-field input.error { border-color: var(--red); }
+.dg-field-error { font-size: 7.5pt; color: var(--red); margin-top: 3px; }
+.dg-style-btns { display: flex; gap: 6px; flex-wrap: wrap; }
+.dg-style-btn { padding: 5px 12px; border-radius: 7px; border: 1px solid var(--border); background: var(--surface2); color: var(--text-sec); font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 9pt; cursor: pointer; transition: all 0.13s; }
+.dg-style-btn:hover { border-color: var(--border-med); color: var(--text); }
+.dg-style-btn.active { background: #111; border-color: transparent; color: #fff; }
+.dg-btn-copy { background: rgba(0,135,90,0.09); color: var(--green); border: 1px solid rgba(0,135,90,0.2); border-radius: 7px; padding: 4px 11px; font-size: 8pt; font-family: 'DM Sans', sans-serif; font-weight: 600; cursor: pointer; transition: all 0.13s; letter-spacing: 0.04em; text-transform: uppercase; display: flex; align-items: center; gap: 5px; }
+.dg-btn-copy:hover { background: rgba(0,135,90,0.15); }
+.dg-btn-copy.copied { opacity: .7; }
+.dg-code-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+.dg-code-block { background: #1a1d2e; border: 1px solid #32364f; border-radius: var(--radius); padding: 12px; font-family: 'DM Mono', monospace; font-size: 8.5pt; color: #a0aec0; min-height: 110px; max-height: 280px; overflow-y: auto; overflow-x: hidden; white-space: pre-wrap; word-break: break-all; line-height: 1.65; }
+.dg-code-empty { color: #3d4566; font-style: italic; font-family: 'DM Sans', sans-serif; font-size: 9pt; }
+.dg-preview-wrap { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius); padding: 11px; min-height: 50px; }
+.dg-toast { position: fixed; top: 14px; right: 14px; padding: 8px 14px; border-radius: 8px; font-size: 9pt; font-weight: 500; display: flex; align-items: center; gap: 6px; z-index: 999; box-shadow: var(--sh-lift); animation: slideIn 0.17s ease; }
+.dg-toast.success { background: #f0fdf4; color: #166534; border: 1px solid #bbf7d0; }
+.dg-toast.error   { background: #fef2f2; color: #991b1b; border: 1px solid #fecaca; }
+@keyframes slideIn { from { opacity: 0; transform: translateX(14px); } to { opacity: 1; transform: translateX(0); } }
